@@ -24,6 +24,7 @@ typedef NSString *(^JTCalendarMonthBlock)(NSDate *date, JTCalendar *jt_calendar)
 
 // Month
 @property (strong, nonatomic) UIColor *menuMonthTextColor;
+@property (strong, nonatomic) UIColor *menuMonthTextColorOtherMonth;
 @property (strong, nonatomic) UIFont *menuMonthTextFont;
 
 @property (assign, nonatomic) CGFloat ratioContentMenu;

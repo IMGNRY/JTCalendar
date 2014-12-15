@@ -176,66 +176,71 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    if(isSelected == selected){
-        animated = NO;
-    }
+//    if(isSelected == selected){
+//        animated = NO;
+//    }
     
     isSelected = selected;
     
-    circleView.transform = CGAffineTransformIdentity;
-    CGAffineTransform tr = CGAffineTransformIdentity;
-    CGFloat opacity = 1.;
+//    circleView.transform = CGAffineTransformIdentity;
+//    CGAffineTransform tr = CGAffineTransformIdentity;
+//    CGFloat opacity = 1.;
     
-    if(selected){
-        if(!self.isOtherMonth){
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelected];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorSelected];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorSelected];
-        }
-        else{
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelectedOtherMonth];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorSelectedOtherMonth];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorSelectedOtherMonth];
-        }
-        
-        circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
-        tr = CGAffineTransformIdentity;
-    }
-    else if([self isToday]){
-        if(!self.isOtherMonth){
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorToday];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorToday];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorToday];
-        }
-        else{
-            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorTodayOtherMonth];
-            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorTodayOtherMonth];
-            dotView.color = [self.calendarManager.calendarAppearance dayDotColorTodayOtherMonth];
-        }
-    }
-    else{
+//    if(selected){
+//        if(!self.isOtherMonth){
+////            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelected];
+//            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorSelected];
+//            dotView.color = [self.calendarManager.calendarAppearance dayDotColorSelected];
+//        }
+//        else{
+////            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorSelectedOtherMonth];
+//            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorSelectedOtherMonth];
+//            dotView.color = [self.calendarManager.calendarAppearance dayDotColorSelectedOtherMonth];
+//        }
+//        
+//        circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1);
+//        tr = CGAffineTransformIdentity;
+//    }
+//    else if([self isToday]){
+//        if(!self.isOtherMonth){
+////            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorToday];
+//            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorToday];
+//            dotView.color = [self.calendarManager.calendarAppearance dayDotColorToday];
+//        }
+//        else{
+////            circleView.color = [self.calendarManager.calendarAppearance dayCircleColorTodayOtherMonth];
+//            textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorTodayOtherMonth];
+//            dotView.color = [self.calendarManager.calendarAppearance dayDotColorTodayOtherMonth];
+//        }
+//    }
+//    else{
         if(!self.isOtherMonth){
             textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColor];
             dotView.color = [self.calendarManager.calendarAppearance dayDotColor];
+            circleView.color = [self.calendarManager.dataSource calendar:self.calendarManager colorForDate:self.date];
+            if (circleView.color != [UIColor whiteColor]) {
+                textLabel.textColor = [UIColor whiteColor];
+            }
         }
         else{
             textLabel.textColor = [self.calendarManager.calendarAppearance dayTextColorOtherMonth];
             dotView.color = [self.calendarManager.calendarAppearance dayDotColorOtherMonth];
         }
         
-        opacity = 0.;
-    }
+//        opacity = 0.;
+//    }
     
-    if(animated){
-        [UIView animateWithDuration:.3 animations:^{
-            circleView.layer.opacity = opacity;
-            circleView.transform = tr;
-        }];
-    }
-    else{
-        circleView.layer.opacity = opacity;
-        circleView.transform = tr;
-    }
+    
+//    if(animated){
+//        [UIView animateWithDuration:.3 animations:^{
+//            circleView.layer.opacity = opacity;
+//            circleView.transform = tr;
+//        }];
+//    }
+//    else{
+//        circleView.layer.opacity = opacity;
+//        circleView.transform = tr;
+//    }
 }
 
 - (void)setIsOtherMonth:(BOOL)isOtherMonth
@@ -246,7 +251,8 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 
 - (void)reloadData
 {
-    dotView.hidden = ![self.calendarManager.dataCache haveEvent:self.date];
+    dotView.hidden = YES; // ![self.calendarManager.dataCache haveEvent:self.date];
+//    circleView.layer.opacity = dotView.hidden ? 0 : 1;
     
     BOOL selected = [self isSameDate:[self.calendarManager currentDateSelected]];
     [self setSelected:selected animated:NO];
