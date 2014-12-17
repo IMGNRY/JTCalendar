@@ -37,28 +37,28 @@
     [events removeAllObjects];
 }
 
-- (BOOL)haveEvent:(NSDate *)date
-{
-    if(!self.calendarManager.dataSource){
-        return NO;
-    }
-    
-    if(!self.calendarManager.calendarAppearance.useCacheSystem){
-        return [self.calendarManager.dataSource calendarHaveEvent:self.calendarManager date:date];
-    }
-    
-    BOOL haveEvent;
-    NSString *key = [dateFormatter stringFromDate:date];
-    
-    if(events[key] != nil){
-        haveEvent = [events[key] boolValue];
-    }
-    else{
-        haveEvent = [self.calendarManager.dataSource calendarHaveEvent:self.calendarManager date:date];
-        events[key] = [NSNumber numberWithBool:haveEvent];
-    }
-    
-    return haveEvent;
-}
+//- (BOOL)haveEvent:(NSDate *)date
+//{
+//    if(!self.calendarManager.dataSource){
+//        return NO;
+//    }
+//    
+//    if(!self.calendarManager.calendarAppearance.useCacheSystem){
+//        return [self.calendarManager.dataSource calendarHaveEvent:self.calendarManager date:date];
+//    }
+//    
+//    BOOL haveEvent;
+//    NSString *key = [dateFormatter stringFromDate:date];
+//    
+//    if(events[key] != nil){
+//        haveEvent = [events[key] boolValue];
+//    }
+//    else{
+//        haveEvent = [self.calendarManager.dataSource calendarHaveEvent:self.calendarManager date:date];
+//        events[key] = [NSNumber numberWithBool:haveEvent];
+//    }
+//    
+//    return haveEvent;
+//}
 
 @end

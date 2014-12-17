@@ -136,28 +136,28 @@ static NSString *const kJTCalendarDaySelected = @"kJTCalendarDaySelected";
 
 - (void)didTouch
 {
-    [self setSelected:YES animated:YES];
-    [self.calendarManager setCurrentDateSelected:self.date];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kJTCalendarDaySelected object:self.date];
-    
-    [self.calendarManager.dataSource calendarDidDateSelected:self.calendarManager date:self.date];
-    
-    if(!self.isOtherMonth || !self.calendarManager.calendarAppearance.autoChangeMonth){
-        return;
-    }
-    
-    NSInteger currentMonthIndex = [self monthIndexForDate:self.date];
-    NSInteger calendarMonthIndex = [self monthIndexForDate:self.calendarManager.currentDate];
-        
-    currentMonthIndex = currentMonthIndex % 12;
-    
-    if(currentMonthIndex == (calendarMonthIndex + 1) % 12){
-        [self.calendarManager loadNextMonth];
-    }
-    else if(currentMonthIndex == (calendarMonthIndex + 12 - 1) % 12){
-        [self.calendarManager loadPreviousMonth];
-    }
+//    [self setSelected:YES animated:YES];
+//    [self.calendarManager setCurrentDateSelected:self.date];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kJTCalendarDaySelected object:self.date];
+//    
+//    [self.calendarManager.dataSource calendarDidDateSelected:self.calendarManager date:self.date];
+//    
+//    if(!self.isOtherMonth || !self.calendarManager.calendarAppearance.autoChangeMonth){
+//        return;
+//    }
+//    
+//    NSInteger currentMonthIndex = [self monthIndexForDate:self.date];
+//    NSInteger calendarMonthIndex = [self monthIndexForDate:self.calendarManager.currentDate];
+//        
+//    currentMonthIndex = currentMonthIndex % 12;
+//    
+//    if(currentMonthIndex == (calendarMonthIndex + 1) % 12){
+//        [self.calendarManager loadNextMonth];
+//    }
+//    else if(currentMonthIndex == (calendarMonthIndex + 12 - 1) % 12){
+//        [self.calendarManager loadPreviousMonth];
+//    }
 }
 
 - (void)didDaySelected:(NSNotification *)notification
